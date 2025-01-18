@@ -5,9 +5,15 @@
       <div class="card-body">
         <h5 class="card-title">Hi, {{ user.name }}</h5>
         <p class="card-text">
-          Total investment: <strong>{{ totalInvestment }}</strong>
+          Total Investment:
+          <strong>{{ formatToRupiah(totalInvestment) }}</strong>
         </p>
       </div>
+    </div>
+    <div class="mt-2 mb-2">
+      <router-link to="/add-investment" class="btn btn-primary"
+        >Add Investment</router-link
+      >
     </div>
     <h4>Investment Log</h4>
     <table class="table table-striped">
@@ -21,8 +27,8 @@
       </thead>
       <tbody>
         <tr v-for="log in investmentLogs" :key="log.id">
-          <td>{{ log.created_at }}</td>
-          <td>{{ log.amount }}</td>
+          <td>{{ formatDate(log.created_at) }}</td>
+          <td>{{ formatToRupiah(log.amount) }}</td>
           <td>{{ log.bank }}</td>
           <td>{{ log.virtual_account }}</td>
         </tr>
@@ -33,6 +39,8 @@
 
 <script>
 import axios from "../services/api";
+import { format } from "date-fns"; // Import fungsi format dari date-fns
+import { id } from "date-fns/locale"; // Locale untuk Indonesia
 
 export default {
   data() {
@@ -41,6 +49,21 @@ export default {
       totalInvestment: 0,
       investmentLogs: [],
     };
+  },
+  methods: {
+    formatToRupiah(value) {
+      // Format angka ke Rupiah
+      return new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+      }).format(value);
+    },
+    formatDate(dateString) {
+      // Format tanggal ke format yang lebih mudah dibaca
+      return format(new Date(dateString), "dd MMMM yyyy 'at' HH:mm", {
+        locale: id,
+      });
+    },
   },
   async created() {
     try {

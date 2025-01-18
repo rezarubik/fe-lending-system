@@ -3,6 +3,7 @@ import Register from "../pages/Register.vue";
 import Login from "../pages/Login.vue";
 import BorrowerDashboard from "../pages/BorrowerDashboard.vue";
 import LenderDashboard from "../pages/LenderDashboard.vue";
+import AddInvestment from "../pages/AddInvestment.vue";
 
 const routes = [
   {
@@ -20,6 +21,11 @@ const routes = [
     path: "/lender-dashboard",
     name: "LenderDashboard",
     component: LenderDashboard,
+  },
+  {
+    path: "/add-investment", // Route baru untuk Add Investment
+    name: "AddInvestment",
+    component: AddInvestment,
   },
 ];
 
