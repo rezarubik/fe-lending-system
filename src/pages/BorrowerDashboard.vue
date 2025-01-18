@@ -27,14 +27,12 @@ export default {
   },
   async created() {
     try {
-      // Pastikan token autentikasi sudah ada di localStorage
       const token = localStorage.getItem("token");
       const response = await axios.get("/borrower/dashboard", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response);
       this.user = response.data.user;
       this.loanLimit = response.data.loan_limit; // Expected to be calculated in backend
     } catch (error) {

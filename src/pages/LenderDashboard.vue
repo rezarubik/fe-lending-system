@@ -21,10 +21,10 @@
       </thead>
       <tbody>
         <tr v-for="log in investmentLogs" :key="log.id">
-          <td>{{ log.date }}</td>
+          <td>{{ log.created_at }}</td>
           <td>{{ log.amount }}</td>
           <td>{{ log.bank }}</td>
-          <td>{{ log.vaNumber }}</td>
+          <td>{{ log.virtual_account }}</td>
         </tr>
       </tbody>
     </table>
@@ -44,10 +44,20 @@ export default {
   },
   async created() {
     try {
-      const response = await axios.get("/lender/dashboard");
+      const token = localStorage.getItem("token");
+      const response = await axios.get("/lender/dashboard", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const listInvestments = await axios.get("/lender/investments", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       this.user = response.data.user;
-      this.totalInvestment = response.data.totalInvestment;
-      this.investmentLogs = response.data.investmentLogs;
+      this.totalInvestment = response.data.total_investment;
+      this.investmentLogs = listInvestments.data.investments;
     } catch (error) {
       console.error(error);
       alert("Failed to load dashboard data.");
