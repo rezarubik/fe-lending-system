@@ -62,14 +62,12 @@ export default {
   methods: {
     async submitInvestment() {
       try {
-        // Ambil token autentikasi dari localStorage
         const token = localStorage.getItem("token");
         if (!token) {
           alert("You need to log in to add an investment.");
           return;
         }
 
-        // Kirim data investasi ke backend
         const response = await axios.post(
           "/lender/investments",
           {
@@ -78,17 +76,14 @@ export default {
           },
           {
             headers: {
-              Authorization: `Bearer ${token}`, // Kirim token di header
+              Authorization: `Bearer ${token}`,
             },
           }
         );
 
-        // Dapatkan No. VA dari respons API atau buat secara lokal
         const virtual_account =
-          response.data.investment.virtual_account || "08123456789"; // Default jika tidak ada data user
+          response.data.investment.virtual_account || "08123456789";
         this.vaNumber = virtual_account;
-        // const bankCode = this.getBankCode(this.selectedBank);
-        // this.vaNumber = bankCode + virtual_account;
 
         alert("Investment successfully added!");
         console.log("VA Number:", this.vaNumber);

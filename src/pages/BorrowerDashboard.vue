@@ -34,7 +34,7 @@ export default {
         },
       });
       this.user = response.data.user;
-      this.loanLimit = response.data.loan_limit; // Expected to be calculated in backend
+      this.loanLimit = response.data.loan_limit;
     } catch (error) {
       console.error(error);
       alert("Failed to load dashboard data.");

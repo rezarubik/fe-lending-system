@@ -8,7 +8,7 @@ import AddInvestment from "../pages/AddInvestment.vue";
 const routes = [
   {
     path: "/",
-    redirect: "/register", // Redirect ke halaman Register saat pertama kali akses
+    redirect: "/register",
   },
   { path: "/register", name: "Register", component: Register },
   { path: "/login", name: "Login", component: Login },
@@ -23,7 +23,7 @@ const routes = [
     component: LenderDashboard,
   },
   {
-    path: "/add-investment", // Route baru untuk Add Investment
+    path: "/add-investment",
     name: "AddInvestment",
     component: AddInvestment,
   },

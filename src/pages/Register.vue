@@ -105,7 +105,6 @@ export default {
       }
       try {
         await axios.post("/register", formData);
-        // const response = await axios.post("/register", formData);
         alert("Registration successful!");
         this.$router.push("/login");
       } catch (error) {

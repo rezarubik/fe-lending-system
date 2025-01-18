@@ -39,8 +39,8 @@
 
 <script>
 import axios from "../services/api";
-import { format } from "date-fns"; // Import fungsi format dari date-fns
-import { id } from "date-fns/locale"; // Locale untuk Indonesia
+import { format } from "date-fns";
+import { id } from "date-fns/locale";
 
 export default {
   data() {
@@ -52,14 +52,12 @@ export default {
   },
   methods: {
     formatToRupiah(value) {
-      // Format angka ke Rupiah
       return new Intl.NumberFormat("id-ID", {
         style: "currency",
         currency: "IDR",
       }).format(value);
     },
     formatDate(dateString) {
-      // Format tanggal ke format yang lebih mudah dibaca
       return format(new Date(dateString), "dd MMMM yyyy 'at' HH:mm", {
         locale: id,
       });

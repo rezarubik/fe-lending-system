@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <router-view />
-    <!-- Menampilkan halaman sesuai route -->
   </div>
 </template>
 
@@ -11,6 +10,4 @@ export default {
 };
 </script>
 
-<style>
-/* Gaya CSS (jika diperlukan) */
-</style>
+<style></style>
